@@ -24,6 +24,7 @@ public class Budged_Calculator {
             float monthlyExpenses = 0f;
             float potencialSavings = 0f;
             String  currentMonth = "";
+            int daysForMonth=0;
 
 
 
@@ -61,28 +62,34 @@ public class Budged_Calculator {
                     if(valueEnter == 1)
                     {
                         //Ask prompts message to input values of expenses and read input to currect variable.
-                        System.out.println(" *** Please Enter You Expenses:  ");
-                        System.out.println(" The mortgage ");
-                        mortgage += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" Groceries ");
-                        groceries += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" Telephone / broadband ");
-                        telephoneBroadband += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" TV Subscription ");
-                        tvSubscription += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" Travel ");
-                        travel += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" Entertainment ");
-                        entertainment += sc.nextFloat();
-                        System.out.println("-----------------");
-                        System.out.println(" Miscellaneous ");
-                        miscellaneous += sc.nextFloat();
-                        System.out.println("-----------------");
+                        try{ //Added try-catch block to prevent from user enter string-char
+                              System.out.println(" *** Please Enter You Expenses:  ");
+                              System.out.println(" The mortgage ");
+                              mortgage += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" Groceries ");
+                              groceries += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" Telephone / broadband ");
+                              telephoneBroadband += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" TV Subscription ");
+                              tvSubscription += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" Travel ");
+                              travel += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" Entertainment ");
+                              entertainment += sc.nextFloat();
+                              System.out.println("-----------------");
+                              System.out.println(" Miscellaneous ");
+                              miscellaneous += sc.nextFloat();
+                              System.out.println("-----------------");
+                            }catch(InputMismatchException error)
+                            {
+                              System.out.println("Enter Number!!!"); //prints message and breaks loop.
+                              continue;
+                            }
                         //calcutes total weekly expenses and stores in variabe.
                         weeklyExpenses = mortgage + groceries + telephoneBroadband + tvSubscription + travel + entertainment + miscellaneous;
                     }else if(valueEnter == 2)
@@ -104,9 +111,37 @@ public class Budged_Calculator {
                         System.out.println("-----------------");
                         currentMonth = sc.next();
                         currentMonth = currentMonth.toUpperCase();
+                        //Add big SWITCH statment to test each case entered to console by user and assign to current months days.
+                        switch (currentMonth)
+                        {
+                            case "JANUARY": daysForMonth = 31;
+                                            break;
+                            case "FEBRUARY": daysForMonth = 28;
+                                            break;
+                            case "MARCH": daysForMonth = 31;
+                                            break;
+                            case "APRIL": daysForMonth = 30;
+                                            break;
+                            case "MAY" : daysForMonth = 31;
+                                            break;
+                            case "JUNE": daysForMonth = 30;
+                                            break;
+                            case "JULY": daysForMonth = 31;
+                                            break;
+                            case "AUGUST": daysForMonth = 31;
+                                            break;
+                            case "SEPTEMBER" : daysForMonth = 30;
+                                            break;
+                            case "OCTOBER": daysForMonth = 31;
+                                            break;
+                            case "NOVEMBER": daysForMonth =30;
+                                            break;
+                            case "DECEMBER": daysForMonth = 31;
+                                            break;
+                        }
                         System.out.println("-----------------");
-                        monthlyExpenses = (weeklyExpenses/7) * 30; // does calculation getting total weekly and dividing from 7days,then multiply by 30days of month.
-                        System.out.println("Your Total Expenses For a "+currentMonth+" Are: " + monthlyExpenses +"Eur." );
+                        monthlyExpenses = (weeklyExpenses/7) * daysForMonth; // does calculation getting total weekly and dividing from 7days,then multiply by 30days of month.
+                        System.out.println("Your Total Expenses For a "+ currentMonth +" Are: " + monthlyExpenses +"Eur." );
                         System.out.println("-----------------");
                         System.out.println();
                     }else if(valueEnter == 5)
@@ -125,3 +160,4 @@ public class Budged_Calculator {
 
         } // end of main method
 } // end of class statment.
+//new message here
